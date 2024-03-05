@@ -1,0 +1,3567 @@
+{
+	"project": {
+		"name": "DullFan的私有项目",
+		"description": "",
+		"details": {
+			"variable": [],
+			"markList": [
+				{
+					"key": "developing",
+					"name": "开发中",
+					"color": "#3A86FF",
+					"is_default": true
+				},
+				{
+					"key": "complated",
+					"name": "已完成",
+					"color": "#2BA58F",
+					"is_default": true
+				},
+				{
+					"key": "modifying",
+					"name": "需修改",
+					"color": "#EC4646",
+					"is_default": true
+				}
+			],
+			"script": {
+				"pre_script": "",
+				"test": ""
+			},
+			"request": {
+				"query": [
+					{
+						"is_checked": "1",
+						"type": "Text",
+						"key": "",
+						"value": "",
+						"description": ""
+					}
+				],
+				"header": [
+					{
+						"is_checked": "1",
+						"type": "Text",
+						"key": "",
+						"value": "",
+						"description": ""
+					}
+				],
+				"body": [
+					{
+						"is_checked": "1",
+						"type": "Text",
+						"key": "",
+						"value": "",
+						"description": ""
+					}
+				]
+			}
+		}
+	},
+	"apis": [
+		{
+			"target_type": "folder",
+			"name": "社区",
+			"mark": "developing",
+			"sort": 1,
+			"request": {
+				"description": "",
+				"header": [
+					{
+						"description": "",
+						"field_type": "String",
+						"is_checked": 1,
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6IjhiMjE1NmU2LWYwZjItNGNjNC05OTliLWJhZDMxODVmYzVjZSJ9.RK8iDolZrkFUMIXwArjEfWFRhHbWtxNVGCZ6VbHDSWqfm4sF25RPIcZRx1VItkU6VNiQB2FjCuY-ae5voSEnsQ",
+						"not_null": 1,
+						"type": "Text"
+					}
+				]
+			},
+			"children": [
+				{
+					"target_type": "folder",
+					"name": "无过滤",
+					"mark": "developing",
+					"sort": 1,
+					"request": {
+						"description": "",
+						"header": [
+							{
+								"description": "",
+								"field_type": "String",
+								"is_checked": -1,
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6ImM2NDY5ZTA0LTAwMzctNDhkZS1hMTBjLWY0NDZlZTI0ODE3NiJ9.axifQd2sh4PbU7g5P10GGjOHLJZb_dBdRWbyWwQQTUDtHYdcHS9u7iRTPZwa_Q2KVwVSATVG1WlAAP3hrH7KQw",
+								"not_null": 1,
+								"type": "Text"
+							}
+						]
+					},
+					"children": [
+						{
+							"target_type": "folder",
+							"name": "文章查询",
+							"mark": "developing",
+							"sort": 1,
+							"request": {
+								"description": ""
+							},
+							"children": [
+								{
+									"target_type": "api",
+									"name": "查询文章详情",
+									"mark": "developing",
+									"sort": 1,
+									"method": "GET",
+									"mock": "{}",
+									"mock_url": "/filterN/article/1",
+									"request": {
+										"url": "{{localIp}}/filterN/article/1",
+										"description": "",
+										"event": {
+											"pre_script": "",
+											"test": ""
+										}
+									},
+									"response": {
+										"success": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "成功",
+												"isDefault": 1,
+												"code": 200,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": {}
+											}
+										},
+										"error": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "失败",
+												"isDefault": -1,
+												"code": 404,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": {}
+											}
+										}
+									},
+									"children": []
+								},
+								{
+									"target_type": "api",
+									"name": "查询文章列表",
+									"mark": "developing",
+									"sort": 1,
+									"method": "GET",
+									"mock": "{}",
+									"mock_url": "/filterN/article/selectArticlesByList",
+									"request": {
+										"url": "{{localIp}}/filterN/article/selectArticlesByList?orderBy=publish_time&orderType=DESC&pageNum=1&pageSize=10",
+										"description": "",
+										"event": {
+											"pre_script": "",
+											"test": ""
+										},
+										"query": {
+											"parameter": [
+												{
+													"description": "",
+													"field_type": "String",
+													"is_checked": -1,
+													"key": "tagId",
+													"value": "2",
+													"not_null": 1,
+													"type": "Text"
+												},
+												{
+													"description": "",
+													"field_type": "String",
+													"is_checked": -1,
+													"key": "status",
+													"value": "1",
+													"not_null": 1,
+													"type": "Text"
+												},
+												{
+													"description": "用户Id",
+													"field_type": "String",
+													"is_checked": -1,
+													"key": "userId",
+													"value": "105",
+													"not_null": 1,
+													"type": "Text"
+												},
+												{
+													"description": "",
+													"field_type": "String",
+													"is_checked": -1,
+													"key": "nickName",
+													"value": "Ha",
+													"not_null": 1,
+													"type": "Text"
+												},
+												{
+													"description": "",
+													"field_type": "String",
+													"is_checked": -1,
+													"key": "content",
+													"value": "没有",
+													"not_null": 1,
+													"type": "Text"
+												},
+												{
+													"description": "",
+													"field_type": "String",
+													"is_checked": -1,
+													"key": "status",
+													"value": "2",
+													"not_null": 1,
+													"type": "Text"
+												},
+												{
+													"description": "DESC",
+													"is_checked": 1,
+													"key": "orderBy",
+													"type": "Text",
+													"not_null": 1,
+													"field_type": "String",
+													"value": "publish_time"
+												},
+												{
+													"description": "publish_time",
+													"is_checked": 1,
+													"key": "orderType",
+													"type": "Text",
+													"not_null": 1,
+													"field_type": "String",
+													"value": "DESC"
+												},
+												{
+													"description": "1",
+													"is_checked": 1,
+													"key": "pageNum",
+													"type": "Text",
+													"not_null": 1,
+													"field_type": "String",
+													"value": "1"
+												},
+												{
+													"description": "10",
+													"is_checked": 1,
+													"key": "pageSize",
+													"type": "Text",
+													"not_null": 1,
+													"field_type": "String",
+													"value": "10"
+												}
+											]
+										}
+									},
+									"response": {
+										"success": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "成功",
+												"isDefault": 1,
+												"code": 200,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": {}
+											}
+										},
+										"error": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "失败",
+												"isDefault": -1,
+												"code": 404,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": {}
+											}
+										}
+									},
+									"children": []
+								}
+							]
+						},
+						{
+							"target_type": "folder",
+							"name": "文章标签管理",
+							"mark": "developing",
+							"sort": 4,
+							"request": {
+								"description": ""
+							},
+							"children": [
+								{
+									"target_type": "api",
+									"name": "获取文章标签详情",
+									"mark": "developing",
+									"sort": 1,
+									"method": "GET",
+									"mock": "{}",
+									"mock_url": "/filterN/article/tag/2",
+									"request": {
+										"url": "{{localIp}}/filterN/article/tag/2",
+										"description": "",
+										"event": {
+											"pre_script": "",
+											"test": ""
+										}
+									},
+									"response": {
+										"success": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "成功",
+												"isDefault": 1,
+												"code": 200,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": {}
+											}
+										},
+										"error": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "失败",
+												"isDefault": -1,
+												"code": 404,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": {}
+											}
+										}
+									},
+									"children": []
+								},
+								{
+									"target_type": "api",
+									"name": "获取文章标签列表",
+									"mark": "developing",
+									"sort": 1,
+									"method": "GET",
+									"mock": "{}",
+									"mock_url": "/filterN/article/tag",
+									"request": {
+										"url": "{{localIp}}/filterN/article/tag?pageSize=10&pageNum=1&status=0",
+										"description": "",
+										"event": {
+											"pre_script": "",
+											"test": ""
+										},
+										"query": {
+											"parameter": [
+												{
+													"description": "",
+													"field_type": "String",
+													"is_checked": 1,
+													"key": "pageSize",
+													"value": "10",
+													"not_null": 1,
+													"type": "Text"
+												},
+												{
+													"description": "",
+													"field_type": "String",
+													"is_checked": 1,
+													"key": "pageNum",
+													"value": "1",
+													"not_null": 1,
+													"type": "Text"
+												},
+												{
+													"description": "",
+													"field_type": "String",
+													"is_checked": 1,
+													"key": "status",
+													"value": "0",
+													"not_null": 1,
+													"type": "Text"
+												}
+											]
+										}
+									},
+									"response": {
+										"success": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "成功",
+												"isDefault": 1,
+												"code": 200,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": []
+											}
+										},
+										"error": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "失败",
+												"isDefault": -1,
+												"code": 404,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": []
+											}
+										}
+									},
+									"children": []
+								}
+							]
+						},
+						{
+							"target_type": "folder",
+							"name": "评论管理",
+							"mark": "developing",
+							"sort": 3,
+							"request": {
+								"description": ""
+							},
+							"children": [
+								{
+									"target_type": "api",
+									"name": "查询文章评论",
+									"mark": "developing",
+									"sort": 1,
+									"method": "GET",
+									"mock": "{}",
+									"mock_url": "/filterN/article/comment/selectComment",
+									"request": {
+										"url": "{{localIp}}/filterN/article/comment/selectComment?commentArticlesId=4&orderBy=comment_time&orderType=DESC&pageNum=1&pageSize=10",
+										"description": "",
+										"event": {
+											"pre_script": "",
+											"test": ""
+										},
+										"query": {
+											"parameter": [
+												{
+													"description": "",
+													"is_checked": 1,
+													"key": "commentArticlesId",
+													"type": "Text",
+													"not_null": 1,
+													"field_type": "String",
+													"value": "4"
+												},
+												{
+													"description": "publish_time",
+													"field_type": "String",
+													"is_checked": 1,
+													"key": "orderBy",
+													"value": "comment_time",
+													"not_null": 1,
+													"type": "Text"
+												},
+												{
+													"description": "DESC",
+													"field_type": "String",
+													"is_checked": 1,
+													"key": "orderType",
+													"value": "DESC",
+													"not_null": 1,
+													"type": "Text"
+												},
+												{
+													"description": "1",
+													"field_type": "String",
+													"is_checked": 1,
+													"key": "pageNum",
+													"value": "1",
+													"not_null": 1,
+													"type": "Text"
+												},
+												{
+													"description": "10",
+													"field_type": "String",
+													"is_checked": 1,
+													"key": "pageSize",
+													"value": "10",
+													"not_null": 1,
+													"type": "Text"
+												}
+											]
+										}
+									},
+									"response": {
+										"success": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "成功",
+												"isDefault": 1,
+												"code": 200,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": []
+											}
+										},
+										"error": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "失败",
+												"isDefault": -1,
+												"code": 404,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": []
+											}
+										}
+									},
+									"children": []
+								},
+								{
+									"target_type": "api",
+									"name": "查询评论回复",
+									"mark": "developing",
+									"sort": 2,
+									"method": "GET",
+									"mock": "{}",
+									"mock_url": "/filterN/article/comment/selectCommentReply",
+									"request": {
+										"url": "{{localIp}}/filterN/article/comment/selectCommentReply?commentId=24&orderBy=reply_time&orderType=DESC&pageNum=1&pageSize=10",
+										"description": "",
+										"event": {
+											"pre_script": "",
+											"test": ""
+										},
+										"query": {
+											"parameter": [
+												{
+													"description": "",
+													"is_checked": 1,
+													"key": "commentId",
+													"type": "Text",
+													"not_null": 1,
+													"field_type": "String",
+													"value": "24"
+												},
+												{
+													"description": "publish_time",
+													"is_checked": 1,
+													"key": "orderBy",
+													"type": "Text",
+													"not_null": 1,
+													"field_type": "String",
+													"value": "reply_time"
+												},
+												{
+													"description": "DESC",
+													"is_checked": 1,
+													"key": "orderType",
+													"type": "Text",
+													"not_null": 1,
+													"field_type": "String",
+													"value": "DESC"
+												},
+												{
+													"description": "1",
+													"is_checked": 1,
+													"key": "pageNum",
+													"type": "Text",
+													"not_null": 1,
+													"field_type": "String",
+													"value": "1"
+												},
+												{
+													"description": "10",
+													"is_checked": 1,
+													"key": "pageSize",
+													"type": "Text",
+													"not_null": 1,
+													"field_type": "String",
+													"value": "10"
+												}
+											]
+										}
+									},
+									"response": {
+										"success": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "成功",
+												"isDefault": 1,
+												"code": 200,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": {}
+											}
+										},
+										"error": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "失败",
+												"isDefault": -1,
+												"code": 404,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": {}
+											}
+										}
+									},
+									"children": []
+								}
+							]
+						},
+						{
+							"target_type": "folder",
+							"name": "用户管理",
+							"mark": "developing",
+							"sort": 1,
+							"request": {
+								"description": ""
+							},
+							"children": [
+								{
+									"target_type": "api",
+									"name": "邮箱注册",
+									"mark": "developing",
+									"sort": 5,
+									"method": "POST",
+									"mock": "{}",
+									"mock_url": "/emailRegister",
+									"request": {
+										"url": "{{localIp}}/emailRegister",
+										"description": "",
+										"event": {
+											"pre_script": "",
+											"test": ""
+										},
+										"body": {
+											"mode": "json",
+											"parameter": [],
+											"raw": "{\r\n    \"username\":\"2323\",\r\n    \"password\":\"2323232\",\r\n    \"email\":\"2928527233@qq.com\",\r\n    \"emailCode\":\"975953\"\r\n}",
+											"raw_para": [
+												{
+													"key": "username",
+													"value": "",
+													"description": "",
+													"not_null": 1,
+													"field_type": "String",
+													"type": "Text",
+													"is_checked": 1
+												}
+											],
+											"raw_schema": {
+												"type": "object",
+												"description": "asda",
+												"apipiost_allow_null": false,
+												"properties": [],
+												"APIPOST_ORDERS": [],
+												"required": []
+											}
+										}
+									},
+									"response": {
+										"success": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "成功",
+												"isDefault": 1,
+												"code": 200,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": []
+											}
+										},
+										"error": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "失败",
+												"isDefault": -1,
+												"code": 404,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": []
+											}
+										}
+									},
+									"children": []
+								},
+								{
+									"target_type": "api",
+									"name": "注册",
+									"mark": "developing",
+									"sort": 4,
+									"method": "POST",
+									"mock": "{}",
+									"mock_url": "/register",
+									"request": {
+										"url": "{{localIp}}/register",
+										"description": "",
+										"event": {
+											"pre_script": "",
+											"test": ""
+										},
+										"body": {
+											"mode": "json",
+											"parameter": [],
+											"raw": "{\r\n    \"username\":\"2323\",\r\n    \"password\":\"2323232\",\r\n    \"uuid\":\"7cc6d50905d5438ca9b9c725054ed119\",\r\n    \"code\":\"7\"\r\n}",
+											"raw_para": [
+												{
+													"key": "username",
+													"value": "",
+													"description": "",
+													"not_null": 1,
+													"field_type": "String",
+													"type": "Text",
+													"is_checked": 1
+												}
+											],
+											"raw_schema": {
+												"type": "object",
+												"description": "asda",
+												"apipiost_allow_null": false,
+												"properties": [],
+												"APIPOST_ORDERS": [],
+												"required": []
+											}
+										}
+									},
+									"response": {
+										"success": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "成功",
+												"isDefault": 1,
+												"code": 200,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": []
+											}
+										},
+										"error": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "失败",
+												"isDefault": -1,
+												"code": 404,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": []
+											}
+										}
+									},
+									"children": []
+								},
+								{
+									"target_type": "api",
+									"name": "邮箱验证码登录",
+									"mark": "developing",
+									"sort": 2,
+									"method": "POST",
+									"mock": "{}",
+									"mock_url": "/emailCodeLogin",
+									"request": {
+										"url": "{{localIp}}/emailCodeLogin?email=1623815123@qq.com&emailCode=875338",
+										"description": "",
+										"event": {
+											"pre_script": "",
+											"test": ""
+										},
+										"body": {
+											"mode": "json",
+											"parameter": [
+												{
+													"description": "",
+													"field_type": "String",
+													"is_checked": -1,
+													"key": "username",
+													"value": "dddd",
+													"not_null": 1,
+													"type": "Text"
+												},
+												{
+													"description": "",
+													"field_type": "String",
+													"is_checked": -1,
+													"key": "password",
+													"value": "ddd",
+													"not_null": 1,
+													"type": "Text"
+												},
+												{
+													"description": "",
+													"field_type": "String",
+													"is_checked": -1,
+													"key": "code",
+													"value": "1",
+													"not_null": 1,
+													"type": "Text"
+												},
+												{
+													"description": "",
+													"field_type": "String",
+													"is_checked": -1,
+													"key": "uuid",
+													"value": "123213",
+													"not_null": 1,
+													"type": "Text"
+												}
+											],
+											"raw": "",
+											"raw_para": [],
+											"raw_schema": {
+												"type": "object"
+											}
+										},
+										"query": {
+											"parameter": [
+												{
+													"description": "",
+													"is_checked": 1,
+													"key": "email",
+													"type": "Text",
+													"not_null": 1,
+													"field_type": "String",
+													"value": "1623815123@qq.com"
+												},
+												{
+													"description": "",
+													"is_checked": 1,
+													"key": "emailCode",
+													"type": "Text",
+													"not_null": 1,
+													"field_type": "String",
+													"value": "875338"
+												}
+											]
+										}
+									},
+									"response": {
+										"success": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "成功",
+												"isDefault": 1,
+												"code": 200,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": []
+											}
+										},
+										"error": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "失败",
+												"isDefault": -1,
+												"code": 404,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": []
+											}
+										}
+									},
+									"children": []
+								},
+								{
+									"target_type": "api",
+									"name": "用户名/邮箱登录",
+									"mark": "developing",
+									"sort": 1,
+									"method": "POST",
+									"mock": "{}",
+									"mock_url": "/login",
+									"request": {
+										"url": "{{localIp}}/login",
+										"description": "",
+										"event": {
+											"pre_script": "",
+											"test": ""
+										},
+										"body": {
+											"mode": "json",
+											"parameter": [
+												{
+													"description": "",
+													"field_type": "String",
+													"is_checked": -1,
+													"key": "username",
+													"value": "dddd",
+													"not_null": 1,
+													"type": "Text"
+												},
+												{
+													"description": "",
+													"field_type": "String",
+													"is_checked": -1,
+													"key": "password",
+													"value": "ddd",
+													"not_null": 1,
+													"type": "Text"
+												},
+												{
+													"description": "",
+													"field_type": "String",
+													"is_checked": -1,
+													"key": "code",
+													"value": "1",
+													"not_null": 1,
+													"type": "Text"
+												},
+												{
+													"description": "",
+													"field_type": "String",
+													"is_checked": -1,
+													"key": "uuid",
+													"value": "123213",
+													"not_null": 1,
+													"type": "Text"
+												}
+											],
+											"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"admin123\",\r\n    \"uuid\":\"008824cf806b41dca3088fce921af210\",\r\n    \"code\":\"1\"\r\n}",
+											"raw_para": [],
+											"raw_schema": {
+												"type": "object"
+											}
+										}
+									},
+									"response": {
+										"success": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "成功",
+												"isDefault": 1,
+												"code": 200,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": []
+											}
+										},
+										"error": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "失败",
+												"isDefault": -1,
+												"code": 404,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": []
+											}
+										}
+									},
+									"children": []
+								},
+								{
+									"target_type": "api",
+									"name": "获取验证码",
+									"mark": "developing",
+									"sort": 3,
+									"method": "GET",
+									"mock": "{}",
+									"mock_url": "/captchaImage",
+									"request": {
+										"url": "{{localIp}}/captchaImage",
+										"description": "",
+										"event": {
+											"pre_script": "",
+											"test": ""
+										},
+										"body": {
+											"mode": "json",
+											"parameter": [],
+											"raw": "",
+											"raw_para": [],
+											"raw_schema": {
+												"type": "object"
+											}
+										}
+									},
+									"response": {
+										"success": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "成功",
+												"isDefault": 1,
+												"code": 200,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": []
+											}
+										},
+										"error": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "失败",
+												"isDefault": -1,
+												"code": 404,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": []
+											}
+										}
+									},
+									"children": []
+								},
+								{
+									"target_type": "api",
+									"name": "发送邮箱验证码",
+									"mark": "developing",
+									"sort": 6,
+									"method": "POST",
+									"mock": "{}",
+									"mock_url": "/filterN/user/sendEmailCode",
+									"request": {
+										"url": "{{localIp}}/filterN/user/sendEmailCode?email=1623815123@qq.com",
+										"description": "",
+										"event": {
+											"pre_script": "",
+											"test": ""
+										},
+										"query": {
+											"parameter": [
+												{
+													"description": "",
+													"is_checked": 1,
+													"key": "email",
+													"type": "Text",
+													"not_null": 1,
+													"field_type": "String",
+													"value": "1623815123@qq.com"
+												}
+											]
+										}
+									},
+									"response": {
+										"success": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "成功",
+												"isDefault": 1,
+												"code": 200,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": []
+											}
+										},
+										"error": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "失败",
+												"isDefault": -1,
+												"code": 404,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": []
+											}
+										}
+									},
+									"children": []
+								},
+								{
+									"target_type": "api",
+									"name": "查询用户信息",
+									"mark": "developing",
+									"sort": 1,
+									"method": "GET",
+									"mock": "{}",
+									"mock_url": "/filterN/user/1",
+									"request": {
+										"url": "{{localIp}}/filterN/user/1",
+										"description": "",
+										"event": {
+											"pre_script": "",
+											"test": ""
+										}
+									},
+									"response": {
+										"success": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "成功",
+												"isDefault": 1,
+												"code": 200,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": []
+											}
+										},
+										"error": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "失败",
+												"isDefault": -1,
+												"code": 404,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": []
+											}
+										}
+									},
+									"children": []
+								},
+								{
+									"target_type": "api",
+									"name": "验证邮箱验证码",
+									"mark": "developing",
+									"sort": 7,
+									"method": "POST",
+									"mock": "{}",
+									"mock_url": "/filterN/user/judgmentEmailCode",
+									"request": {
+										"url": "{{localIp}}/filterN/user/judgmentEmailCode",
+										"description": "",
+										"event": {
+											"pre_script": "",
+											"test": ""
+										},
+										"body": {
+											"mode": "json",
+											"parameter": [],
+											"raw": "{\r\n    \"email\":\"2928527233@qq.com\",\r\n    \"code\":\"665786\"\r\n}",
+											"raw_para": [],
+											"raw_schema": {
+												"type": "object"
+											}
+										},
+										"query": {
+											"parameter": [
+												{
+													"description": "",
+													"field_type": "String",
+													"is_checked": -1,
+													"key": "",
+													"value": "",
+													"not_null": 1,
+													"type": "Text",
+													"static": true
+												}
+											]
+										}
+									},
+									"response": {
+										"success": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "成功",
+												"isDefault": 1,
+												"code": 200,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": []
+											}
+										},
+										"error": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "失败",
+												"isDefault": -1,
+												"code": 404,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": []
+											}
+										}
+									},
+									"children": []
+								}
+							]
+						}
+					]
+				},
+				{
+					"target_type": "folder",
+					"name": "过滤",
+					"mark": "developing",
+					"sort": 1,
+					"request": {
+						"description": ""
+					},
+					"children": [
+						{
+							"target_type": "folder",
+							"name": "文章标签管理",
+							"mark": "developing",
+							"sort": 5,
+							"request": {
+								"description": ""
+							},
+							"children": [
+								{
+									"target_type": "api",
+									"name": "删除文章标签",
+									"mark": "developing",
+									"sort": 4,
+									"method": "DELETE",
+									"mock": "{}",
+									"mock_url": "/system/article/tag/6",
+									"request": {
+										"url": "{{localIp}}/system/article/tag/6",
+										"description": "",
+										"event": {
+											"pre_script": "",
+											"test": ""
+										}
+									},
+									"response": {
+										"success": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "成功",
+												"isDefault": 1,
+												"code": 200,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": {}
+											}
+										},
+										"error": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "失败",
+												"isDefault": -1,
+												"code": 404,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": {}
+											}
+										}
+									},
+									"children": []
+								},
+								{
+									"target_type": "api",
+									"name": "修改文章标签",
+									"mark": "developing",
+									"sort": 3,
+									"method": "PUT",
+									"mock": "{}",
+									"mock_url": "/system/article/tag",
+									"request": {
+										"url": "{{localIp}}/system/article/tag",
+										"description": "",
+										"event": {
+											"pre_script": "",
+											"test": ""
+										},
+										"body": {
+											"mode": "json",
+											"parameter": [],
+											"raw": "{\r\n    \"id\":\"5\",\r\n    \"name\":\"Spring MVC\",\r\n    \"description\":\"后端基础\",\r\n    \"status\":1\r\n}",
+											"raw_para": [],
+											"raw_schema": {
+												"type": "object"
+											}
+										}
+									},
+									"response": {
+										"success": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "成功",
+												"isDefault": 1,
+												"code": 200,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": {}
+											}
+										},
+										"error": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "失败",
+												"isDefault": -1,
+												"code": 404,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": {}
+											}
+										}
+									},
+									"children": []
+								},
+								{
+									"target_type": "api",
+									"name": "新增文章标签",
+									"mark": "developing",
+									"sort": 2,
+									"method": "POST",
+									"mock": "{}",
+									"mock_url": "/system/article/tag",
+									"request": {
+										"url": "{{localIp}}/system/article/tag",
+										"description": "",
+										"event": {
+											"pre_script": "",
+											"test": ""
+										},
+										"body": {
+											"mode": "json",
+											"parameter": [],
+											"raw": "{\r\n    \"name\":\"HTML\",\r\n    \"description\":\"前端三剑客之一\",\r\n    \"status\":1\r\n}",
+											"raw_para": [],
+											"raw_schema": {
+												"type": "object"
+											}
+										}
+									},
+									"response": {
+										"success": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "成功",
+												"isDefault": 1,
+												"code": 200,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": {}
+											}
+										},
+										"error": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "失败",
+												"isDefault": -1,
+												"code": 404,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": {}
+											}
+										}
+									},
+									"children": []
+								}
+							]
+						},
+						{
+							"target_type": "folder",
+							"name": "通知管理",
+							"mark": "developing",
+							"sort": 8,
+							"request": {
+								"description": ""
+							},
+							"children": [
+								{
+									"target_type": "api",
+									"name": "查询通知详情",
+									"mark": "developing",
+									"sort": 5,
+									"method": "GET",
+									"mock": "{}",
+									"mock_url": "/system/notification/1",
+									"request": {
+										"url": "{{localIp}}/system/notification/1",
+										"description": "",
+										"event": {
+											"pre_script": "",
+											"test": ""
+										}
+									},
+									"response": {
+										"success": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "成功",
+												"isDefault": 1,
+												"code": 200,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": []
+											}
+										},
+										"error": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "失败",
+												"isDefault": -1,
+												"code": 404,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": []
+											}
+										}
+									},
+									"children": []
+								},
+								{
+									"target_type": "api",
+									"name": "添加系统通知",
+									"mark": "developing",
+									"sort": 1,
+									"method": "POST",
+									"mock": "{}",
+									"mock_url": "/system/notification/system",
+									"request": {
+										"url": "{{localIp}}/system/notification/system",
+										"description": "",
+										"event": {
+											"pre_script": "",
+											"test": ""
+										},
+										"body": {
+											"mode": "json",
+											"parameter": [],
+											"raw": "{\r\n    \"content\":\"发送了101和100\",\r\n    \"articleId\":\"\",\r\n    \"commentId\":\"\",\r\n    \"commentReplyId\":\"\",\r\n    \"notificationUserList\":[\r\n        {\r\n            \"toUserId\":\"101\"\r\n        },\r\n        {\r\n            \"toUserId\":\"100\"\r\n        },\r\n        {\r\n            \"toUserId\":\"1\"\r\n        },\r\n        {\r\n            \"toUserId\":\"1\"\r\n        }\r\n    ]\r\n}",
+											"raw_para": [],
+											"raw_schema": {
+												"type": "object"
+											}
+										},
+										"query": {
+											"parameter": [
+												{
+													"description": "接收者Id",
+													"field_type": "String",
+													"is_checked": -1,
+													"key": "toUserId",
+													"value": "105",
+													"not_null": 1,
+													"type": "Text"
+												},
+												{
+													"description": "发布者Id",
+													"field_type": "String",
+													"is_checked": -1,
+													"key": "fromUserId",
+													"value": "1",
+													"not_null": 1,
+													"type": "Text"
+												}
+											]
+										}
+									},
+									"response": {
+										"success": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "成功",
+												"isDefault": 1,
+												"code": 200,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": []
+											}
+										},
+										"error": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "失败",
+												"isDefault": -1,
+												"code": 404,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": []
+											}
+										}
+									},
+									"children": []
+								},
+								{
+									"target_type": "api",
+									"name": "查询通知列表",
+									"mark": "developing",
+									"sort": 1,
+									"method": "GET",
+									"mock": "{}",
+									"mock_url": "/system/notification/list",
+									"request": {
+										"url": "{{localIp}}/system/notification/list",
+										"description": "",
+										"event": {
+											"pre_script": "",
+											"test": ""
+										},
+										"query": {
+											"parameter": [
+												{
+													"description": "发布者Id",
+													"field_type": "String",
+													"is_checked": -1,
+													"key": "fromUserId",
+													"value": "1",
+													"not_null": 1,
+													"type": "Text"
+												},
+												{
+													"description": "",
+													"is_checked": -1,
+													"key": "pageNum",
+													"type": "Text",
+													"not_null": 1,
+													"field_type": "String",
+													"value": "1"
+												},
+												{
+													"description": "",
+													"is_checked": -1,
+													"key": "pageSize",
+													"type": "Text",
+													"not_null": 1,
+													"field_type": "String",
+													"value": "10"
+												},
+												{
+													"description": "通知类型",
+													"is_checked": -1,
+													"key": "notificationType",
+													"type": "Text",
+													"not_null": 1,
+													"field_type": "String",
+													"value": "1"
+												},
+												{
+													"description": "",
+													"is_checked": -1,
+													"key": "toUserId",
+													"type": "Text",
+													"not_null": 1,
+													"field_type": "String",
+													"value": "101"
+												}
+											]
+										}
+									},
+									"response": {
+										"success": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "成功",
+												"isDefault": 1,
+												"code": 200,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": []
+											}
+										},
+										"error": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "失败",
+												"isDefault": -1,
+												"code": 404,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": []
+											}
+										}
+									},
+									"children": []
+								},
+								{
+									"target_type": "api",
+									"name": "添加评论通知",
+									"mark": "developing",
+									"sort": 3,
+									"method": "POST",
+									"mock": "{}",
+									"mock_url": "/system/notification/comment",
+									"request": {
+										"url": "{{localIp}}/system/notification/comment",
+										"description": "",
+										"event": {
+											"pre_script": "",
+											"test": ""
+										},
+										"body": {
+											"mode": "json",
+											"parameter": [],
+											"raw": "{\r\n    \"articleId\":\"5\",\r\n    \"commentId\":\"10\",\r\n    \"commentReplyId\":\"11\",\r\n    \"notificationUserList\":[\r\n        {\r\n            \"toUserId\":\"1\"\r\n        }\r\n    ]\r\n}",
+											"raw_para": [],
+											"raw_schema": {
+												"type": "object"
+											}
+										},
+										"query": {
+											"parameter": [
+												{
+													"description": "接收者Id",
+													"field_type": "String",
+													"is_checked": -1,
+													"key": "toUserId",
+													"value": "105",
+													"not_null": 1,
+													"type": "Text"
+												},
+												{
+													"description": "发布者Id",
+													"field_type": "String",
+													"is_checked": -1,
+													"key": "fromUserId",
+													"value": "1",
+													"not_null": 1,
+													"type": "Text"
+												}
+											]
+										}
+									},
+									"response": {
+										"success": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "成功",
+												"isDefault": 1,
+												"code": 200,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": []
+											}
+										},
+										"error": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "失败",
+												"isDefault": -1,
+												"code": 404,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": []
+											}
+										}
+									},
+									"children": []
+								},
+								{
+									"target_type": "api",
+									"name": "修改通知",
+									"mark": "developing",
+									"sort": 4,
+									"method": "PUT",
+									"mock": "{}",
+									"mock_url": "/system/notification",
+									"request": {
+										"url": "{{localIp}}/system/notification",
+										"description": "",
+										"event": {
+											"pre_script": "",
+											"test": ""
+										},
+										"body": {
+											"mode": "json",
+											"parameter": [],
+											"raw": "{\r\n    \"notificationId\":\"1\",\r\n    \"notificationType\":\"1\",\r\n    \"content\":\"你是个屁\",\r\n    \"articleId\":\"\",\r\n    \"commentId\":\"\",\r\n    \"commentReplyId\":\"\",\r\n    \"notificationUserList\":[\r\n        {\r\n            \"toUserId\":\"101\"\r\n        },\r\n        {\r\n            \"toUserId\":\"102\"\r\n        }\r\n    ]\r\n}",
+											"raw_para": [],
+											"raw_schema": {
+												"type": "object"
+											}
+										},
+										"query": {
+											"parameter": [
+												{
+													"description": "接收者Id",
+													"field_type": "String",
+													"is_checked": -1,
+													"key": "toUserId",
+													"value": "105",
+													"not_null": 1,
+													"type": "Text"
+												},
+												{
+													"description": "发布者Id",
+													"field_type": "String",
+													"is_checked": -1,
+													"key": "fromUserId",
+													"value": "1",
+													"not_null": 1,
+													"type": "Text"
+												}
+											]
+										}
+									},
+									"response": {
+										"success": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "成功",
+												"isDefault": 1,
+												"code": 200,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": []
+											}
+										},
+										"error": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "失败",
+												"isDefault": -1,
+												"code": 404,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": []
+											}
+										}
+									},
+									"children": []
+								},
+								{
+									"target_type": "api",
+									"name": "删除通知",
+									"mark": "developing",
+									"sort": 6,
+									"method": "DELETE",
+									"mock": "{}",
+									"mock_url": "/system/notification/25",
+									"request": {
+										"url": "{{localIp}}/system/notification/25",
+										"description": "",
+										"event": {
+											"pre_script": "",
+											"test": ""
+										}
+									},
+									"response": {
+										"success": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "成功",
+												"isDefault": 1,
+												"code": 200,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": []
+											}
+										},
+										"error": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "失败",
+												"isDefault": -1,
+												"code": 404,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": []
+											}
+										}
+									},
+									"children": []
+								},
+								{
+									"target_type": "api",
+									"name": "添加点赞通知",
+									"mark": "developing",
+									"sort": 2,
+									"method": "POST",
+									"mock": "{}",
+									"mock_url": "/system/notification/thumb",
+									"request": {
+										"url": "{{localIp}}/system/notification/thumb",
+										"description": "",
+										"event": {
+											"pre_script": "",
+											"test": ""
+										},
+										"body": {
+											"mode": "json",
+											"parameter": [],
+											"raw": "{\r\n    \"articleId\":\"5\",\r\n    \"commentId\":\"10\",\r\n    \"commentReplyId\":\"11\",\r\n    \"notificationUserList\":[\r\n        {\r\n            \"toUserId\":\"101\"\r\n        }\r\n    ]\r\n}",
+											"raw_para": [],
+											"raw_schema": {
+												"type": "object"
+											}
+										},
+										"query": {
+											"parameter": [
+												{
+													"description": "接收者Id",
+													"field_type": "String",
+													"is_checked": -1,
+													"key": "toUserId",
+													"value": "105",
+													"not_null": 1,
+													"type": "Text"
+												},
+												{
+													"description": "发布者Id",
+													"field_type": "String",
+													"is_checked": -1,
+													"key": "fromUserId",
+													"value": "1",
+													"not_null": 1,
+													"type": "Text"
+												}
+											]
+										}
+									},
+									"response": {
+										"success": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "成功",
+												"isDefault": 1,
+												"code": 200,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": []
+											}
+										},
+										"error": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "失败",
+												"isDefault": -1,
+												"code": 404,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": []
+											}
+										}
+									},
+									"children": []
+								}
+							]
+						},
+						{
+							"target_type": "folder",
+							"name": "用户",
+							"mark": "developing",
+							"sort": 1,
+							"request": {
+								"description": ""
+							},
+							"children": [
+								{
+									"target_type": "api",
+									"name": "重置密码",
+									"mark": "developing",
+									"sort": 4,
+									"method": "PUT",
+									"mock": "{}",
+									"mock_url": "/system/user/profile/updatePwd",
+									"request": {
+										"url": "{{localIp}}/system/user/profile/updatePwd?oldPassword=admin123&newPassword=123123",
+										"description": "",
+										"event": {
+											"pre_script": "",
+											"test": ""
+										},
+										"body": {
+											"mode": "json",
+											"parameter": [],
+											"raw": "",
+											"raw_para": [],
+											"raw_schema": {
+												"type": "object"
+											}
+										},
+										"query": {
+											"parameter": [
+												{
+													"description": "",
+													"field_type": "String",
+													"is_checked": 1,
+													"key": "oldPassword",
+													"value": "admin123",
+													"not_null": 1,
+													"type": "Text"
+												},
+												{
+													"description": "",
+													"field_type": "String",
+													"is_checked": 1,
+													"key": "newPassword",
+													"value": "123123",
+													"not_null": 1,
+													"type": "Text"
+												}
+											]
+										}
+									},
+									"response": {
+										"success": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "成功",
+												"isDefault": 1,
+												"code": 200,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": {}
+											}
+										},
+										"error": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "失败",
+												"isDefault": -1,
+												"code": 404,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": {}
+											}
+										}
+									},
+									"children": []
+								},
+								{
+									"target_type": "api",
+									"name": "退出登录",
+									"mark": "developing",
+									"sort": 1,
+									"method": "POST",
+									"mock": "{}",
+									"mock_url": "/logout",
+									"request": {
+										"url": "{{localIp}}/logout",
+										"description": "",
+										"event": {
+											"pre_script": "",
+											"test": ""
+										}
+									},
+									"response": {
+										"success": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "成功",
+												"isDefault": 1,
+												"code": 200,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": []
+											}
+										},
+										"error": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "失败",
+												"isDefault": -1,
+												"code": 404,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": []
+											}
+										}
+									},
+									"children": []
+								},
+								{
+									"target_type": "api",
+									"name": "查询个人信息",
+									"mark": "developing",
+									"sort": 3,
+									"method": "GET",
+									"mock": "{}",
+									"mock_url": "/system/user/profile",
+									"request": {
+										"url": "{{localIp}}/system/user/profile",
+										"description": "",
+										"event": {
+											"pre_script": "",
+											"test": ""
+										},
+										"body": {
+											"mode": "json",
+											"parameter": [],
+											"raw": "",
+											"raw_para": [],
+											"raw_schema": {
+												"type": "object"
+											}
+										}
+									},
+									"response": {
+										"success": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "成功",
+												"isDefault": 1,
+												"code": 200,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": {}
+											}
+										},
+										"error": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "失败",
+												"isDefault": -1,
+												"code": 404,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": {}
+											}
+										}
+									},
+									"children": []
+								},
+								{
+									"target_type": "api",
+									"name": "修改用户",
+									"mark": "developing",
+									"sort": 2,
+									"method": "PUT",
+									"mock": "{}",
+									"mock_url": "/system/user/profile",
+									"request": {
+										"url": "{{localIp}}/system/user/profile",
+										"description": "",
+										"event": {
+											"pre_script": "",
+											"test": ""
+										},
+										"body": {
+											"mode": "json",
+											"parameter": [],
+											"raw": "{\r\n    \"nickName\":\"Hahahah 我修改了名字\",\r\n    \"phonenumber\":\"13276997792\",\r\n    \"sex\":\"1\",\r\n    \"idCard\":\"350522222\",\r\n    \"classId\":\"\",\r\n    \"majorId\":\"\",\r\n    \"introduction\":\"这是我的简介\",\r\n    \"honors\":\"我拿了好多东西\",\r\n    \"projects\":\"我没有写过项目\",\r\n    \"blogAddress\":\"没有\"\r\n}",
+											"raw_para": [],
+											"raw_schema": {
+												"type": "object"
+											}
+										}
+									},
+									"response": {
+										"success": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "成功",
+												"isDefault": 1,
+												"code": 200,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": []
+											}
+										},
+										"error": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "失败",
+												"isDefault": -1,
+												"code": 404,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": []
+											}
+										}
+									},
+									"children": []
+								},
+								{
+									"target_type": "api",
+									"name": "修改用户头像",
+									"mark": "developing",
+									"sort": 5,
+									"method": "POST",
+									"mock": "{}",
+									"mock_url": "/system/user/profile/avatar",
+									"request": {
+										"url": "{{localIp}}/system/user/profile/avatar",
+										"description": "",
+										"event": {
+											"pre_script": "",
+											"test": ""
+										},
+										"body": {
+											"mode": "form-data",
+											"parameter": [
+												{
+													"description": "",
+													"field_type": "String",
+													"is_checked": 1,
+													"key": "avatarfile",
+													"value": [
+														"D:\\AppData\\项目图片\\default_avatar.jpg"
+													],
+													"not_null": 1,
+													"type": "File",
+													"filename": "default_avatar.jpg",
+													"fileBase64": []
+												}
+											],
+											"raw": "",
+											"raw_para": [],
+											"raw_schema": {
+												"type": "object"
+											}
+										},
+										"query": {
+											"parameter": [
+												{
+													"description": "",
+													"field_type": "String",
+													"is_checked": -1,
+													"key": "oldPassword",
+													"value": "admin123",
+													"not_null": 1,
+													"type": "Text"
+												},
+												{
+													"description": "",
+													"field_type": "String",
+													"is_checked": -1,
+													"key": "newPassword",
+													"value": "123123",
+													"not_null": 1,
+													"type": "Text"
+												}
+											]
+										}
+									},
+									"response": {
+										"success": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "成功",
+												"isDefault": 1,
+												"code": 200,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": {}
+											}
+										},
+										"error": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "失败",
+												"isDefault": -1,
+												"code": 404,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": {}
+											}
+										}
+									},
+									"children": []
+								}
+							]
+						},
+						{
+							"target_type": "folder",
+							"name": "岗位管理",
+							"mark": "developing",
+							"sort": 2,
+							"request": {
+								"description": ""
+							},
+							"children": [
+								{
+									"target_type": "api",
+									"name": "岗位列表",
+									"mark": "developing",
+									"sort": 1,
+									"method": "GET",
+									"mock": "{}",
+									"mock_url": "/system/post/list",
+									"request": {
+										"url": "{{localIp}}/system/post/list?pageNum=1&pageSize=10",
+										"description": "",
+										"event": {
+											"pre_script": "",
+											"test": ""
+										},
+										"query": {
+											"parameter": [
+												{
+													"description": "",
+													"is_checked": 1,
+													"key": "pageNum",
+													"type": "Text",
+													"not_null": 1,
+													"field_type": "String",
+													"value": "1"
+												},
+												{
+													"description": "",
+													"is_checked": 1,
+													"key": "pageSize",
+													"type": "Text",
+													"not_null": 1,
+													"field_type": "String",
+													"value": "10"
+												}
+											]
+										}
+									},
+									"response": {
+										"success": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "成功",
+												"isDefault": 1,
+												"code": 200,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": {}
+											}
+										},
+										"error": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "失败",
+												"isDefault": -1,
+												"code": 404,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": {}
+											}
+										}
+									},
+									"children": []
+								}
+							]
+						},
+						{
+							"target_type": "folder",
+							"name": "文件上传",
+							"mark": "developing",
+							"sort": 3,
+							"request": {
+								"description": ""
+							},
+							"children": [
+								{
+									"target_type": "api",
+									"name": "上传单张图片",
+									"mark": "developing",
+									"sort": 1,
+									"method": "POST",
+									"mock": "{}",
+									"mock_url": "/common/upload",
+									"request": {
+										"url": "{{localIp}}/common/upload",
+										"description": "",
+										"event": {
+											"pre_script": "",
+											"test": ""
+										},
+										"body": {
+											"mode": "form-data",
+											"parameter": [
+												{
+													"description": "",
+													"field_type": "String",
+													"is_checked": 1,
+													"key": "file",
+													"value": [
+														"D:\\AppData\\项目图片\\rv_img16.jpg"
+													],
+													"not_null": 1,
+													"type": "File",
+													"filename": "rv_img16.jpg",
+													"fileBase64": []
+												}
+											],
+											"raw": "",
+											"raw_para": [],
+											"raw_schema": {
+												"type": "object"
+											}
+										}
+									},
+									"response": {
+										"success": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "成功",
+												"isDefault": 1,
+												"code": 200,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": []
+											}
+										},
+										"error": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "失败",
+												"isDefault": -1,
+												"code": 404,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": []
+											}
+										}
+									},
+									"children": []
+								},
+								{
+									"target_type": "api",
+									"name": "删除单个文件",
+									"mark": "developing",
+									"sort": 4,
+									"method": "DELETE",
+									"mock": "{}",
+									"mock_url": "/common/deleteFile",
+									"request": {
+										"url": "{{localIp}}/common/deleteFile?fileUrl=/profile/upload/2024/02/05/rv_img8_20240205092449A001.jpg",
+										"description": "",
+										"event": {
+											"pre_script": "",
+											"test": ""
+										},
+										"query": {
+											"parameter": [
+												{
+													"description": "",
+													"is_checked": 1,
+													"key": "fileUrl",
+													"type": "Text",
+													"not_null": 1,
+													"field_type": "String",
+													"value": "/profile/upload/2024/02/05/rv_img8_20240205092449A001.jpg"
+												}
+											]
+										}
+									},
+									"response": {
+										"success": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "成功",
+												"isDefault": 1,
+												"code": 200,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": {}
+											}
+										},
+										"error": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "失败",
+												"isDefault": -1,
+												"code": 404,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": {}
+											}
+										}
+									},
+									"children": []
+								},
+								{
+									"target_type": "api",
+									"name": "删除多个文件",
+									"mark": "developing",
+									"sort": 5,
+									"method": "DELETE",
+									"mock": "{}",
+									"mock_url": "/common/deleteFiles",
+									"request": {
+										"url": "{{localIp}}/common/deleteFiles?fileUrls=/profile/upload/2023/12/08/rv_img1_20231208002010A002.jpg,/profile/upload/2023/12/08/rv_img2_20231208002010A003.jpg,/profile/upload/2023/12/08/rv_img3_20231208002010A004.jpg,/profile/upload/2023/12/08/rv_img4_20231208002010A005.jpg,/profile/upload/2023/12/08/rv_img5_20231208002010A006.jpg",
+										"description": "",
+										"event": {
+											"pre_script": "",
+											"test": ""
+										},
+										"query": {
+											"parameter": [
+												{
+													"description": "",
+													"is_checked": 1,
+													"key": "fileUrls",
+													"type": "Text",
+													"not_null": 1,
+													"field_type": "String",
+													"value": "/profile/upload/2023/12/08/rv_img1_20231208002010A002.jpg,/profile/upload/2023/12/08/rv_img2_20231208002010A003.jpg,/profile/upload/2023/12/08/rv_img3_20231208002010A004.jpg,/profile/upload/2023/12/08/rv_img4_20231208002010A005.jpg,/profile/upload/2023/12/08/rv_img5_20231208002010A006.jpg"
+												}
+											]
+										}
+									},
+									"response": {
+										"success": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "成功",
+												"isDefault": 1,
+												"code": 200,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": {}
+											}
+										},
+										"error": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "失败",
+												"isDefault": -1,
+												"code": 404,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": {}
+											}
+										}
+									},
+									"children": []
+								},
+								{
+									"target_type": "api",
+									"name": "上传多张图片",
+									"mark": "developing",
+									"sort": 1,
+									"method": "POST",
+									"mock": "{}",
+									"mock_url": "/common/uploads",
+									"request": {
+										"url": "{{localIp}}/common/uploads",
+										"description": "",
+										"event": {
+											"pre_script": "",
+											"test": ""
+										},
+										"body": {
+											"mode": "form-data",
+											"parameter": [
+												{
+													"description": "",
+													"field_type": "String",
+													"is_checked": 1,
+													"key": "files",
+													"value": [
+														"D:\\AppData\\项目图片\\rv_img1.jpg",
+														"D:\\AppData\\项目图片\\rv_img2.jpg",
+														"D:\\AppData\\项目图片\\rv_img3.jpg",
+														"D:\\AppData\\项目图片\\rv_img4.jpg",
+														"D:\\AppData\\项目图片\\rv_img5.jpg"
+													],
+													"not_null": 1,
+													"type": "File",
+													"filename": "rv_img1.jpg|rv_img2.jpg|rv_img3.jpg|rv_img4.jpg|rv_img5.jpg",
+													"fileBase64": []
+												}
+											],
+											"raw": "",
+											"raw_para": [],
+											"raw_schema": {
+												"type": "object"
+											}
+										}
+									},
+									"response": {
+										"success": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "成功",
+												"isDefault": 1,
+												"code": 200,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": {}
+											}
+										},
+										"error": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "失败",
+												"isDefault": -1,
+												"code": 404,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": {}
+											}
+										}
+									},
+									"children": []
+								}
+							]
+						},
+						{
+							"target_type": "folder",
+							"name": "部门管理",
+							"mark": "developing",
+							"sort": 1,
+							"request": {
+								"description": ""
+							},
+							"children": [
+								{
+									"target_type": "api",
+									"name": "部门列表",
+									"mark": "developing",
+									"sort": 1,
+									"method": "GET",
+									"mock": "{}",
+									"mock_url": "/system/dept/list",
+									"request": {
+										"url": "{{localIp}}/system/dept/list",
+										"description": "",
+										"event": {
+											"pre_script": "",
+											"test": ""
+										}
+									},
+									"response": {
+										"success": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "成功",
+												"isDefault": 1,
+												"code": 200,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": []
+											}
+										},
+										"error": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "失败",
+												"isDefault": -1,
+												"code": 404,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": []
+											}
+										}
+									},
+									"children": []
+								}
+							]
+						},
+						{
+							"target_type": "folder",
+							"name": "文章管理",
+							"mark": "developing",
+							"sort": 4,
+							"request": {
+								"description": ""
+							},
+							"children": [
+								{
+									"target_type": "api",
+									"name": "浏览文章",
+									"mark": "developing",
+									"sort": 4,
+									"method": "POST",
+									"mock": "{}",
+									"mock_url": "/system/article/browse",
+									"request": {
+										"url": "{{localIp}}/system/article/browse?quoteId=1",
+										"description": "",
+										"event": {
+											"pre_script": "",
+											"test": ""
+										},
+										"query": {
+											"parameter": [
+												{
+													"description": "",
+													"is_checked": 1,
+													"key": "quoteId",
+													"type": "Text",
+													"not_null": 1,
+													"field_type": "String",
+													"value": "1"
+												}
+											]
+										}
+									},
+									"response": {
+										"success": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "成功",
+												"isDefault": 1,
+												"code": 200,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": {}
+											}
+										},
+										"error": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "失败",
+												"isDefault": -1,
+												"code": 404,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": {}
+											}
+										}
+									},
+									"children": []
+								},
+								{
+									"target_type": "api",
+									"name": "封禁文章",
+									"mark": "developing",
+									"sort": 7,
+									"method": "POST",
+									"mock": "{}",
+									"mock_url": "/system/article/ban/1,4",
+									"request": {
+										"url": "{{localIp}}/system/article/ban/1,4",
+										"description": "",
+										"event": {
+											"pre_script": "",
+											"test": ""
+										}
+									},
+									"response": {
+										"success": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "成功",
+												"isDefault": 1,
+												"code": 200,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": {}
+											}
+										},
+										"error": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "失败",
+												"isDefault": -1,
+												"code": 404,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": {}
+											}
+										}
+									},
+									"children": []
+								},
+								{
+									"target_type": "api",
+									"name": "修改文章",
+									"mark": "developing",
+									"sort": 1,
+									"method": "PUT",
+									"mock": "{}",
+									"mock_url": "/system/article",
+									"request": {
+										"url": "{{localIp}}/system/article",
+										"description": "",
+										"event": {
+											"pre_script": "",
+											"test": ""
+										},
+										"body": {
+											"mode": "json",
+											"parameter": [],
+											"raw": "{\r\n    \"id\":\"2\",\r\n    \"content\": \"23111123\",\r\n    \"tagId\": \"11112\"\r\n}",
+											"raw_para": [],
+											"raw_schema": {
+												"type": "object"
+											}
+										}
+									},
+									"response": {
+										"success": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "成功",
+												"isDefault": 1,
+												"code": 200,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": {}
+											}
+										},
+										"error": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "失败",
+												"isDefault": -1,
+												"code": 404,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": {}
+											}
+										}
+									},
+									"children": []
+								},
+								{
+									"target_type": "api",
+									"name": "发布文章",
+									"mark": "developing",
+									"sort": 1,
+									"method": "POST",
+									"mock": "{}",
+									"mock_url": "/system/article",
+									"request": {
+										"url": "{{localIp}}/system/article",
+										"description": "",
+										"event": {
+											"pre_script": "",
+											"test": ""
+										},
+										"body": {
+											"mode": "json",
+											"parameter": [],
+											"raw": "{\r\n    \"content\": \"未审核\",\r\n    \"tagId\": \"2\",\r\n    \"articleImgList\":[\r\n        {\r\n            \"imageUrl\":\"/profile/upload/2024/02/23/rv_img14_20240223094744A002.jpg\"\r\n        }\r\n    ]\r\n}",
+											"raw_para": [],
+											"raw_schema": {
+												"type": "object"
+											}
+										}
+									},
+									"response": {
+										"success": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "成功",
+												"isDefault": 1,
+												"code": 200,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": []
+											}
+										},
+										"error": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "失败",
+												"isDefault": -1,
+												"code": 404,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": []
+											}
+										}
+									},
+									"children": []
+								},
+								{
+									"target_type": "api",
+									"name": "删除文章",
+									"mark": "developing",
+									"sort": 2,
+									"method": "DELETE",
+									"mock": "{}",
+									"mock_url": "/system/article/31,32",
+									"request": {
+										"url": "{{localIp}}/system/article/31,32",
+										"description": "",
+										"event": {
+											"pre_script": "",
+											"test": ""
+										}
+									},
+									"response": {
+										"success": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "成功",
+												"isDefault": 1,
+												"code": 200,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": {}
+											}
+										},
+										"error": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "失败",
+												"isDefault": -1,
+												"code": 404,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": {}
+											}
+										}
+									},
+									"children": []
+								},
+								{
+									"target_type": "api",
+									"name": "点赞文章",
+									"mark": "developing",
+									"sort": 3,
+									"method": "POST",
+									"mock": "{}",
+									"mock_url": "/system/article/thumbs",
+									"request": {
+										"url": "{{localIp}}/system/article/thumbs?quoteId=1",
+										"description": "",
+										"event": {
+											"pre_script": "",
+											"test": ""
+										},
+										"query": {
+											"parameter": [
+												{
+													"description": "",
+													"field_type": "String",
+													"is_checked": 1,
+													"key": "quoteId",
+													"value": "1",
+													"not_null": 1,
+													"type": "Text"
+												}
+											]
+										}
+									},
+									"response": {
+										"success": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "成功",
+												"isDefault": 1,
+												"code": 200,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": {}
+											}
+										},
+										"error": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "失败",
+												"isDefault": -1,
+												"code": 404,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": {}
+											}
+										}
+									},
+									"children": []
+								},
+								{
+									"target_type": "api",
+									"name": "审查文章",
+									"mark": "developing",
+									"sort": 6,
+									"method": "POST",
+									"mock": "{}",
+									"mock_url": "/system/article/review/1,4",
+									"request": {
+										"url": "{{localIp}}/system/article/review/1,4",
+										"description": "",
+										"event": {
+											"pre_script": "",
+											"test": ""
+										}
+									},
+									"response": {
+										"success": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "成功",
+												"isDefault": 1,
+												"code": 200,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": {}
+											}
+										},
+										"error": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "失败",
+												"isDefault": -1,
+												"code": 404,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": {}
+											}
+										}
+									},
+									"children": []
+								},
+								{
+									"target_type": "api",
+									"name": "批量删除文章",
+									"mark": "developing",
+									"sort": 5,
+									"method": "DELETE",
+									"mock": "{}",
+									"mock_url": "/system/article/2",
+									"request": {
+										"url": "{{localIp}}/system/article/2",
+										"description": "",
+										"event": {
+											"pre_script": "",
+											"test": ""
+										}
+									},
+									"response": {
+										"success": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "成功",
+												"isDefault": 1,
+												"code": 200,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": {}
+											}
+										},
+										"error": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "失败",
+												"isDefault": -1,
+												"code": 404,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": {}
+											}
+										}
+									},
+									"children": []
+								},
+								{
+									"target_type": "api",
+									"name": "未审查文章",
+									"mark": "developing",
+									"sort": 8,
+									"method": "POST",
+									"mock": "{}",
+									"mock_url": "/system/article/unReview/1,4",
+									"request": {
+										"url": "{{localIp}}/system/article/unReview/1,4",
+										"description": "",
+										"event": {
+											"pre_script": "",
+											"test": ""
+										}
+									},
+									"response": {
+										"success": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "成功",
+												"isDefault": 1,
+												"code": 200,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": {}
+											}
+										},
+										"error": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "失败",
+												"isDefault": -1,
+												"code": 404,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": {}
+											}
+										}
+									},
+									"children": []
+								}
+							]
+						},
+						{
+							"target_type": "folder",
+							"name": "评论管理",
+							"mark": "developing",
+							"sort": 7,
+							"request": {
+								"description": ""
+							},
+							"children": [
+								{
+									"target_type": "api",
+									"name": "点赞评论",
+									"mark": "developing",
+									"sort": 2,
+									"method": "POST",
+									"mock": "{}",
+									"mock_url": "/system/article/comment/commentThumbs",
+									"request": {
+										"url": "{{localIp}}/system/article/comment/commentThumbs?quoteId=7",
+										"description": "",
+										"event": {
+											"pre_script": "",
+											"test": ""
+										},
+										"query": {
+											"parameter": [
+												{
+													"description": "",
+													"is_checked": 1,
+													"key": "quoteId",
+													"type": "Text",
+													"not_null": 1,
+													"field_type": "String",
+													"value": "7"
+												}
+											]
+										}
+									},
+									"response": {
+										"success": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "成功",
+												"isDefault": 1,
+												"code": 200,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": []
+											}
+										},
+										"error": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "失败",
+												"isDefault": -1,
+												"code": 404,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": []
+											}
+										}
+									},
+									"children": []
+								},
+								{
+									"target_type": "api",
+									"name": "点赞回复评论",
+									"mark": "developing",
+									"sort": 5,
+									"method": "POST",
+									"mock": "{}",
+									"mock_url": "/system/article/comment/commentReplyThumbs",
+									"request": {
+										"url": "{{localIp}}/system/article/comment/commentReplyThumbs?quoteId=4",
+										"description": "",
+										"event": {
+											"pre_script": "",
+											"test": ""
+										},
+										"query": {
+											"parameter": [
+												{
+													"description": "",
+													"is_checked": 1,
+													"key": "quoteId",
+													"type": "Text",
+													"not_null": 1,
+													"field_type": "String",
+													"value": "4"
+												}
+											]
+										}
+									},
+									"response": {
+										"success": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "成功",
+												"isDefault": 1,
+												"code": 200,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": {}
+											}
+										},
+										"error": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "失败",
+												"isDefault": -1,
+												"code": 404,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": {}
+											}
+										}
+									},
+									"children": []
+								},
+								{
+									"target_type": "api",
+									"name": "回复评论",
+									"mark": "developing",
+									"sort": 3,
+									"method": "POST",
+									"mock": "{}",
+									"mock_url": "/system/article/comment/commentReply",
+									"request": {
+										"url": "{{localIp}}/system/article/comment/commentReply?uploadImageList=/profile/upload/2024/02/23/rv_img14_20240223125024A001.jpg&commentId=24&content=asdasdsadasd",
+										"description": "",
+										"event": {
+											"pre_script": "",
+											"test": ""
+										},
+										"query": {
+											"parameter": [
+												{
+													"description": "",
+													"field_type": "String",
+													"is_checked": 1,
+													"key": "uploadImageList",
+													"value": "/profile/upload/2024/02/23/rv_img14_20240223125024A001.jpg",
+													"not_null": 1,
+													"type": "Text"
+												},
+												{
+													"description": "",
+													"field_type": "String",
+													"is_checked": 1,
+													"key": "commentId",
+													"value": "24",
+													"not_null": 1,
+													"type": "Text"
+												},
+												{
+													"description": "",
+													"field_type": "String",
+													"is_checked": 1,
+													"key": "content",
+													"value": "asdasdsadasd",
+													"not_null": 1,
+													"type": "Text"
+												},
+												{
+													"description": "",
+													"field_type": "String",
+													"is_checked": -1,
+													"key": "replyUserId",
+													"value": "1",
+													"not_null": 1,
+													"type": "Text"
+												}
+											]
+										}
+									},
+									"response": {
+										"success": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "成功",
+												"isDefault": 1,
+												"code": 200,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": []
+											}
+										},
+										"error": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "失败",
+												"isDefault": -1,
+												"code": 404,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": []
+											}
+										}
+									},
+									"children": []
+								},
+								{
+									"target_type": "api",
+									"name": "删除评论",
+									"mark": "developing",
+									"sort": 1,
+									"method": "DELETE",
+									"mock": "{}",
+									"mock_url": "/system/article/comment/deleteComment",
+									"request": {
+										"url": "{{localIp}}/system/article/comment/deleteComment?commentId=6",
+										"description": "",
+										"event": {
+											"pre_script": "",
+											"test": ""
+										},
+										"query": {
+											"parameter": [
+												{
+													"description": "",
+													"is_checked": 1,
+													"key": "commentId",
+													"type": "Text",
+													"not_null": 1,
+													"field_type": "String",
+													"value": "6"
+												}
+											]
+										}
+									},
+									"response": {
+										"success": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "成功",
+												"isDefault": 1,
+												"code": 200,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": []
+											}
+										},
+										"error": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "失败",
+												"isDefault": -1,
+												"code": 404,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": []
+											}
+										}
+									},
+									"children": []
+								},
+								{
+									"target_type": "api",
+									"name": "评论文章",
+									"mark": "developing",
+									"sort": 1,
+									"method": "POST",
+									"mock": "{}",
+									"mock_url": "/system/article/comment/commentArticles",
+									"request": {
+										"url": "{{localIp}}/system/article/comment/commentArticles?content=没有图片&commentArticlesId=4&uploadImageList=",
+										"description": "",
+										"event": {
+											"pre_script": "",
+											"test": ""
+										},
+										"body": {
+											"mode": "form-data",
+											"parameter": [],
+											"raw": "",
+											"raw_para": [],
+											"raw_schema": {
+												"type": "object"
+											}
+										},
+										"query": {
+											"parameter": [
+												{
+													"description": "",
+													"field_type": "String",
+													"is_checked": 1,
+													"key": "content",
+													"value": "没有图片",
+													"not_null": 1,
+													"type": "Text"
+												},
+												{
+													"description": "",
+													"field_type": "String",
+													"is_checked": 1,
+													"key": "commentArticlesId",
+													"value": "4",
+													"not_null": 1,
+													"type": "Text"
+												},
+												{
+													"description": "",
+													"field_type": "String",
+													"is_checked": 1,
+													"key": "uploadImageList",
+													"value": "",
+													"not_null": 1,
+													"type": "Text"
+												}
+											]
+										}
+									},
+									"response": {
+										"success": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "成功",
+												"isDefault": 1,
+												"code": 200,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": []
+											}
+										},
+										"error": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "失败",
+												"isDefault": -1,
+												"code": 404,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": []
+											}
+										}
+									},
+									"children": []
+								},
+								{
+									"target_type": "api",
+									"name": "删除评论回复",
+									"mark": "developing",
+									"sort": 4,
+									"method": "DELETE",
+									"mock": "{}",
+									"mock_url": "/system/article/comment/deleteCommentReply",
+									"request": {
+										"url": "{{localIp}}/system/article/comment/deleteCommentReply?commentReplyId=4",
+										"description": "",
+										"event": {
+											"pre_script": "",
+											"test": ""
+										},
+										"query": {
+											"parameter": [
+												{
+													"description": "",
+													"is_checked": 1,
+													"key": "commentReplyId",
+													"type": "Text",
+													"not_null": 1,
+													"field_type": "String",
+													"value": "4"
+												}
+											]
+										}
+									},
+									"response": {
+										"success": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "成功",
+												"isDefault": 1,
+												"code": 200,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": []
+											}
+										},
+										"error": {
+											"raw": "",
+											"parameter": [],
+											"expect": {
+												"name": "失败",
+												"isDefault": -1,
+												"code": 404,
+												"contentType": "json",
+												"verifyType": "schema",
+												"mock": "",
+												"schema": []
+											}
+										}
+									},
+									"children": []
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	],
+	"envs": [
+		{
+			"env_id": "-1",
+			"list": {
+				"localIp": {
+					"current_value": "http://43.140.205.33:8080",
+					"type": "1",
+					"value": "http://43.140.205.33:8080",
+					"description": "43.140.205.33"
+				}
+			},
+			"name": "默认环境",
+			"pre_url": ""
+		},
+		{
+			"env_id": "-2",
+			"list": {
+				"localIp": {
+					"value": "http://43.140.205.33:8080",
+					"current_value": "http://43.140.205.33:8080",
+					"description": ""
+				}
+			},
+			"name": "Mock环境",
+			"pre_url": "https://console-mock.apipost.cn/mock/a602705d-6e39-432d-ad19-3972e61c4404/"
+		}
+	]
+}

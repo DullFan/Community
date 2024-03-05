@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ruoyi.system.mapper.BrowseMapper">
+    <resultMap id="BrowseResult" type="com.ruoyi.system.domain.Browse">
+        <result property="id" column="id"/>
+        <result property="browseUserId" column="browse_user_id"/>
+        <result property="browseArticlesId" column="browse_articles_id"/>
+        <result property="createTime" column="create_time"/>
+    </resultMap>
+
+    <sql id="selectBrowseVo">
+        select id, browse_user_id, browse_articles_id, create_time
+        from browse
+    </sql>
+
+    <insert id="insertBrowse" useGeneratedKeys="true" keyProperty="id">
+        insert into browse
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="browseUserId != null">browse_user_id,</if>
+            <if test="browseArticlesId != null">browse_articles_id,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="browseUserId != null">#{browseUserId},</if>
+            <if test="browseArticlesId != null">#{browseArticlesId},</if>
+        </trim>
+    </insert>
+
+    <update id="updateBrowse" parameterType="com.ruoyi.system.domain.Browse">
+        update browse
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="browseUserId != null">browse_user_id = #{browseUserId},</if>
+            <if test="browseArticlesId != null">browse_articles_id = #{browse_articles_id},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <select id="selectBrowseById" resultType="com.ruoyi.system.domain.Browse">
+        <include refid="selectBrowseVo"/>
+        where id = #{id}
+    </select>
+
+    <select id="selectBrowseList" parameterType="com.ruoyi.system.domain.Browse" resultMap="BrowseResult">
+        <include refid="selectBrowseVo"/>
+        <where>
+            <if test="browseUserId != null ">and browse_user_id = #{browseUserId}</if>
+            <if test="browseArticlesId != null ">and browse_articles_id = #{browseArticlesId}</if>
+        </where>
+    </select>
+
+    <select id="selectBrowseByBrowse" resultType="com.ruoyi.system.domain.Browse" resultMap="BrowseResult">
+        <include refid="selectBrowseVo"/>
+        where browse_user_id = #{browseUserId} AND browse_articles_id = #{browseArticlesId}
+    </select>
+
+    <delete id="deleteBrowseById" parameterType="Long">
+        delete
+        from browse
+        where id = #{id}
+    </delete>
+    <delete id="deleteBrowseByIds" parameterType="String">
+        delete from browse where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

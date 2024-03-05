@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ruoyi.system.mapper.CommentMapper">
+    <resultMap id="CommentResult" type="com.ruoyi.system.domain.Comment">
+        <result property="id" column="id"/>
+        <result property="content" column="content"/>
+        <result property="commentUserId" column="comment_user_id"/>
+        <result property="commentArticlesId" column="comment_articles_id"/>
+        <result property="replyCount" column="reply_count"/>
+        <result property="commentThumbsUpCount" column="comment_thumbs_up_count"/>
+        <result property="commentTime" column="comment_time"/>
+        <result property="commentNickName" column="comment_nick_name"/>
+        <result property="commentUserAvatar" column="comment_user_avatar"/>
+        <result property="isThumbedByCommentCurrentUser" column="is_thumbed_by_comment_current_user"/>
+    </resultMap>
+
+    <resultMap id="ImageResult" type="com.ruoyi.system.domain.Image">
+        <result property="id" column="i_id"/>
+        <result property="quoteId" column="quote_id"/>
+        <result property="type" column="type"/>
+        <result property="imageUrl" column="image_url"/>
+    </resultMap>
+
+    <resultMap id="ArticlesImageResult" type="com.ruoyi.system.domain.Comment" extends="CommentResult">
+        <collection property="commentImgList"
+                    notNullColumn="i_id"
+                    javaType="java.util.List" resultMap="ImageResult"/>
+    </resultMap>
+
+    <insert id="insertComment" useGeneratedKeys="true" keyProperty="id">
+        insert into comment
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="content != null and content != ''">content,</if>
+            <if test="commentUserId != null">comment_user_id,</if>
+            <if test="commentArticlesId != null">comment_articles_id,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="content != null and content != ''">#{content},</if>
+            <if test="commentUserId != null">#{commentUserId},</if>
+            <if test="commentArticlesId != null">#{commentArticlesId},</if>
+        </trim>
+    </insert>
+
+    <update id="updateComment" parameterType="com.ruoyi.system.domain.Comment">
+        update comment
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="content != null and content != ''">content = #{content}</if>
+            <if test="commentUserId != null">comment_user_id = #{commentUserId}</if>
+            <if test="commentArticlesId != null">comment_articles_id = #{commentArticlesId}</if>
+            <if test="replyCount != null">reply_count = reply_count + #{replyCount}</if>
+            <if test="commentThumbsUpCount != null">comment_thumbs_up_count = comment_thumbs_up_count +
+                #{commentThumbsUpCount}
+            </if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteCommentByIds">
+        delete from comment where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <delete id="deleteCommentById">
+        delete
+        from comment
+        where id = #{id}
+    </delete>
+
+    <select id="selectCommentById" resultMap="ArticlesImageResult">
+        select c.id                              as id,
+               c.content                         as content,
+               c.comment_user_id                 as comment_user_id,
+               c.comment_articles_id             as comment_articles_id,
+               c.comment_time                    as comment_time,
+               c.comment_thumbs_up_count         as comment_thumbs_up_count,
+               c.reply_count                     as reply_count,
+               c.comment_time                    as comment_time,
+               u.nick_name                       as comment_nick_name,
+               u.avatar                          as comment_user_avatar,
+               i.id                              as i_id,
+               i.quote_id                        as quote_id,
+               i.image_url                       as image_url,
+               i.type                            as type,
+               IF(th.quote_id IS NOT NULL, 1, 0) as is_thumbed_by_comment_current_user
+        from comment c
+                 left join sys_user u
+                           on c.comment_user_id = u.user_id
+                 left join thumbs th
+                           on c.id = th.quote_id and th.type = 2 and th.user_id = #{userId}
+                 left join images i on c.id = i.quote_id and i.type = 2
+        where c.id = #{id}
+    </select>
+
+    <select id="selectCommentList" resultMap="ArticlesImageResult">
+        select c.id                              as id,
+               c.content                         as content,
+               c.comment_user_id                 as comment_user_id,
+               c.comment_articles_id             as comment_articles_id,
+               c.comment_time                    as comment_time,
+               c.comment_thumbs_up_count         as comment_thumbs_up_count,
+               c.reply_count                     as reply_count,
+               u.nick_name                        as comment_nick_name,
+               u.avatar                          as comment_user_avatar,
+               i.id                              as i_id,
+               i.quote_id                        as quote_id,
+               i.image_url                       as image_url,
+               i.type                            as type,
+               IF(th.quote_id IS NOT NULL, 1, 0) as is_thumbed_by_comment_current_user
+        from (select c.id                      as id,
+                     c.content                 as content,
+                     c.comment_user_id         as comment_user_id,
+                     c.comment_articles_id     as comment_articles_id,
+                     c.comment_time            as comment_time,
+                     c.comment_thumbs_up_count as comment_thumbs_up_count,
+                     c.reply_count             as reply_count
+              from comment c
+              where c.comment_articles_id = #{param3}
+              ORDER BY id ${param2}
+                  limit #{param5}
+                     , #{param6}) c
+                 left join sys_user u
+                           on c.comment_user_id = u.user_id
+                 left join thumbs th
+                           on c.id = th.quote_id and th.type = 2 and th.user_id = #{param4}
+                 left join images i on c.id = i.quote_id and i.type = 2
+        ORDER BY ${param1} ${param2}
+    </select>
+    <select id="selectTotalNum" resultType="java.lang.Long">
+        SELECT COUNT(*)
+        FROM comment
+        <if test="commentArticlesId != null and commentArticlesId != ''">where comment_articles_id = #{commentArticlesId}</if>
+    </select>
+</mapper>

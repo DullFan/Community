@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ruoyi.system.mapper.ArticlesTagMapper">
+    <resultMap id="ArticlesTagResult" type="com.ruoyi.system.domain.ArticlesTag">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="description" column="description"/>
+        <result property="status" column="status"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createByName" column="create_by_name"/>
+        <result property="createTime" column="create_time"/>
+    </resultMap>
+
+    <insert id="insertArticlesTag" useGeneratedKeys="true" keyProperty="id">
+        insert into articles_tag
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="name != null">name,</if>
+            <if test="description != null">description,</if>
+            <if test="status != null">status,</if>
+            <if test="createBy != null">create_by,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="name != null">#{name},</if>
+            <if test="description != null">#{description},</if>
+            <if test="status != null">#{status},</if>
+            <if test="createBy != null">#{createBy},</if>
+        </trim>
+    </insert>
+
+    <update id="updateArticlesTag" parameterType="com.ruoyi.system.domain.ArticlesTag">
+        update articles_tag
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="name != null and name != ''">name = #{name},</if>
+            <if test="description != null">description = #{description},</if>
+            <if test="status != null">status = #{status},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteArticlesTagByIds">
+        delete from articles_tag where id in
+        <foreach item="tagId" collection="array" open="(" separator="," close=")">
+            #{tagId}
+        </foreach>
+    </delete>
+
+    <delete id="deleteArticlesTagById">
+        delete
+        from articles_tag
+        where id = #{tagId}
+    </delete>
+
+    <select id="selectArticlesTagById" resultMap="ArticlesTagResult">
+        select t.id,
+               t.name,
+               t.description,
+               t.status,
+               t.create_by,
+               u.user_name as create_by_name,
+               t.create_time
+        from articles_tag t
+                 LEFT JOIN sys_user u ON t.create_by = u.user_id
+        where t.id = #{tagId}
+    </select>
+
+    <select id="selectArticlesTagByList" resultMap="ArticlesTagResult">
+        select t.id,
+               t.name,
+               t.description,
+               t.status,
+               t.create_by,
+               u.user_name as create_by_name,
+               t.create_time
+        from articles_tag t
+                 LEFT JOIN sys_user u ON t.create_by = u.user_id
+        <trim prefix="where" prefixOverrides="and">
+            <if test="articleTagPage.status != null and articleTagPage.status != ''">and t.status = #{articleTagPage.status}</if>
+        </trim>
+            limit #{articleTagPage.newPageNum}
+           , #{articleTagPage.pageSize}
+    </select>
+
+    <select id="selectTotalNum" resultType="java.lang.Long">
+        SELECT COUNT(*)
+        FROM articles_tag
+        <trim prefix="where" prefixOverrides="and">
+            <if test="articleTagPage.status != null and articleTagPage.status != ''">and status = #{articleTagPage.status}</if>
+        </trim>
+    </select>
+
+
+</mapper>

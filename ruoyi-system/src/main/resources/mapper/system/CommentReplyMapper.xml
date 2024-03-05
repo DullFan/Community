@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ruoyi.system.mapper.CommentReplyMapper">
+    <resultMap type="com.ruoyi.system.domain.CommentReply" id="CommentReplyResult">
+        <result property="id" column="id"/>
+        <result property="content" column="content"/>
+        <result property="commentReplyUserId" column="comment_reply_user_id"/>
+        <result property="commentReplyNickName" column="comment_reply_nick_name"/>
+        <result property="commentReplyUserAvatar" column="comment_reply_user_avatar"/>
+        <result property="replyNickName" column="reply_nick_name"/>
+        <result property="replyUserId" column="reply_user_id"/>
+        <result property="commentId" column="comment_id"/>
+        <result property="commentReplyThumbsUpCount" column="comment_reply_thumbs_up_count"/>
+        <result property="replyTime" column="reply_time"/>
+        <result property="isThumbedByCommentReplyCurrentUser" column="is_thumbed_by_comment_reply_current_user"/>
+    </resultMap>
+    <resultMap id="ImageResult" type="com.ruoyi.system.domain.Image">
+        <result property="id" column="i_id"/>
+        <result property="quoteId" column="quote_id"/>
+        <result property="type" column="type"/>
+        <result property="imageUrl" column="image_url"/>
+    </resultMap>
+
+    <resultMap id="CommentReplyImageResult" type="com.ruoyi.system.domain.CommentReply" extends="CommentReplyResult">
+        <collection property="commentReplyImgList"
+                    notNullColumn="i_id"
+                    javaType="java.util.List" resultMap="ImageResult"/>
+    </resultMap>
+    <sql id="selectCommentReplyVo">
+        select id, content, comment_reply_user_id, reply_user_id, comment_id, reply_time, comment_reply_thumbs_up_count
+        from comment_reply
+    </sql>
+    <insert id="insertCommentReply" useGeneratedKeys="true" keyProperty="id">
+        insert into comment_reply
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="content != null and content != ''">content,</if>
+            <if test="commentReplyUserId != null">comment_reply_user_id,</if>
+            <if test="replyUserId != null">reply_user_id,</if>
+            <if test="commentId != null">comment_id,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="content != null and content != ''">#{content},</if>
+            <if test="commentReplyUserId != null">#{commentReplyUserId},</if>
+            <if test="replyUserId != null">#{replyUserId},</if>
+            <if test="commentId != null">#{commentId},</if>
+        </trim>
+    </insert>
+
+    <update id="updateCommentReply">
+        update comment_reply
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="content != null and content != ''">content = #{content},</if>
+            <if test="commentReplyUserId != null">comment_reply_user_id = #{commentReplyUserId},</if>
+            <if test="commentId != null">comment_id = #{commentId},</if>
+            <if test="replyTime != null">reply_time = #{replyTime},</if>
+            <if test="commentReplyThumbsUpCount != null">comment_reply_thumbs_up_count = comment_reply_thumbs_up_count +
+                #{commentReplyThumbsUpCount}
+            </if>
+        </trim>
+        where id = #{id}
+    </update>
+
+
+    <delete id="deleteCommentReplyById">
+        delete
+        from comment_reply
+        where id = #{id}
+    </delete>
+    <delete id="deleteCommentReplyByIds">
+        delete from comment_reply where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <select id="selectCommentReplyById" resultMap="CommentReplyImageResult">
+        select cr.id                             as id,
+               cr.content                        as content,
+               cr.comment_id                     as comment_id,
+               cr.comment_reply_user_id          as comment_reply_user_id,
+               u1.nick_name                       as comment_reply_nick_name,
+               u1.avatar                         as comment_reply_user_avatar,
+               cr.reply_user_id                  as reply_user_id,
+               u2.nick_name                       as reply_nick_name,
+               cr.comment_reply_thumbs_up_count  as comment_reply_thumbs_up_count,
+               cr.reply_time                     as reply_time,
+               i.id                              as i_id,
+               i.quote_id                        as quote_id,
+               i.image_url                       as image_url,
+               i.type                            as type,
+               IF(th.quote_id IS NOT NULL, 1, 0) as is_thumbed_by_comment_reply_current_user
+        from comment_reply cr
+                 left join sys_user u1
+                           on cr.comment_reply_user_id = u1.user_id
+                 left join sys_user u2
+                           on cr.reply_user_id = u2.user_id
+                 left join thumbs th
+                           on cr.id = th.quote_id and th.type = 3 and th.user_id = #{userId}
+                 left join images i on cr.id = i.quote_id and i.type = 3
+        where cr.id = #{commentId}
+    </select>
+
+    <select id="selectCommentReplyList" resultMap="CommentReplyImageResult">
+        select cr.id                             as id,
+               cr.content                        as content,
+               cr.comment_id                     as comment_id,
+               cr.comment_reply_user_id          as comment_reply_user_id,
+               u1.nick_name                       as comment_reply_nick_name,
+               u1.avatar                         as comment_reply_user_avatar,
+               cr.reply_user_id                  as reply_user_id,
+               u2.nick_name                       as reply_nick_name,
+               cr.comment_reply_thumbs_up_count  as comment_reply_thumbs_up_count,
+               cr.reply_time                     as reply_time,
+               i.id                              as i_id,
+               i.quote_id                        as quote_id,
+               i.image_url                       as image_url,
+               i.type                            as type,
+               IF(th.quote_id IS NOT NULL, 1, 0) as is_thumbed_by_comment_reply_current_user
+        from (select cr.id                            as id,
+                     cr.content                       as content,
+                     cr.comment_id                    as comment_id,
+                     cr.comment_reply_user_id         as comment_reply_user_id,
+                     cr.reply_user_id                 as reply_user_id,
+                     cr.comment_reply_thumbs_up_count as comment_reply_thumbs_up_count,
+                     cr.reply_time                    as reply_time
+              from comment_reply cr
+              where cr.comment_id = #{param3}
+              ORDER BY id ${param2}
+                  limit #{param5}
+                     , #{param6}) cr
+                 left join sys_user u1
+                           on cr.comment_reply_user_id = u1.user_id
+                 left join sys_user u2
+                           on cr.reply_user_id = u2.user_id
+                 left join thumbs th
+                           on cr.id = th.quote_id and th.type = 3 and th.user_id = #{param4}
+                 left join images i on cr.id = i.quote_id and i.type = 3
+        ORDER BY ${param1} ${param2}
+    </select>
+    <select id="selectTotalNum" resultType="java.lang.Long">
+        SELECT COUNT(*)
+        FROM comment_reply
+        <if test="commentId != null and commentId != ''">where comment_id = #{commentId}</if>
+    </select>
+</mapper>

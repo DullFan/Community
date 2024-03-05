@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ruoyi.system.mapper.ImageMapper">
+    <resultMap id="ImageResult" type="com.ruoyi.system.domain.Image">
+        <result property="id" column="i_id"/>
+        <result property="quoteId" column="quote_id"/>
+        <result property="type" column="type"/>
+        <result property="imageUrl" column="image_url"/>
+    </resultMap>
+
+    <insert id="insertImage">
+        insert into images
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="quoteId != null">quote_id,</if>
+            <if test="type != null">type,</if>
+            <if test="imageUrl != null and imageUrl != ''">image_url,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="quoteId != null">#{quoteId},</if>
+            <if test="type != null">#{type},</if>
+            <if test="imageUrl != null and imageUrl != ''">#{imageUrl},</if>
+        </trim>
+    </insert>
+
+    <delete id="deleteImageById">
+        delete
+        from images
+        where id = #{id}
+    </delete>
+    <delete id="deleteImageByArticlesId">
+        delete
+        from images
+        where quote_id = #{quoteId}
+          and type = #{type}
+    </delete>
+
+    <delete id="deleteImageByArticlesIds">
+        delete
+        from images
+        where quote_id IN
+        <foreach item="item" collection="quoteIds"
+                 open="(" separator="," close=")">
+            #{item}
+        </foreach>
+        and type = #{type}
+    </delete>
+
+
+    <select id="selectImageById" resultType="com.ruoyi.system.domain.Image" resultMap="ImageResult">
+        select id, quote_id, type, image_url
+        from images
+        where type = #{type}
+          and quote_id = #{quoteId}
+    </select>
+</mapper>

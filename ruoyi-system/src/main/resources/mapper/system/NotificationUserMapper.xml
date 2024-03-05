@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ruoyi.system.mapper.NotificationUserMapper">
+    <resultMap id="NotificationResult" type="com.ruoyi.system.domain.Notification">
+        <result property="content" column="content"/>
+        <result property="notificationId" column="notification_id"/>
+        <result property="notificationType" column="notification_type"/>
+        <result property="fromUserId" column="from_user_id"/>
+        <result property="fromUserName" column="from_user_name"/>
+        <result property="articleId" column="article_id"/>
+        <result property="commentId" column="comment_id"/>
+        <result property="commentReplyContent" column="comment_reply_content"/>
+        <result property="commentReplyId" column="comment_reply_id"/>
+        <result property="commentContent" column="comment_content"/>
+        <result property="createTime" column="create_time"/>
+        <result property="articleTitle" column="article_title"/>
+        <collection property="notificationUserList"
+                    javaType="java.util.List" resultMap="NotificationUserResult"/>
+    </resultMap>
+
+    <resultMap id="NotificationUserResult" type="com.ruoyi.system.domain.NotificationUser">
+        <result property="toUserId" column="to_user_id"/>
+        <result property="status" column="status"/>
+        <result property="id" column="id"/>
+        <result property="toUserName" column="to_user_name"/>
+        <result property="viewTime" column="view_time"/>
+    </resultMap>
+
+    <insert id="insertNotificationUser" useGeneratedKeys="true" keyProperty="id">
+        insert into notification_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="notificationId != null and notificationId != ''">notification_id,</if>
+            <if test="toUserId != null and toUserId != ''">to_user_id,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="notificationId != null and notificationId != ''">#{notificationId},</if>
+            <if test="toUserId != null and toUserId != ''">#{toUserId},</if>
+        </trim>
+    </insert>
+
+    <insert id="insertNotificationUsers" useGeneratedKeys="true" keyProperty="id">
+        insert into notification_user
+            (notification_id,to_user_id)
+        VALUES
+        <foreach item="item" collection="notificationUsers" separator=",">
+            (#{item.notificationId},#{item.toUserId})
+        </foreach>
+    </insert>
+
+    <update id="updateNotificationUser">
+        update notification_user
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="notificationId != null and notificationId != ''">notification_id = #{notificationId},</if>
+            <if test="toUserId != null and toUserId != ''">to_user_id
+                = #{toUserId},
+            </if>
+            <if test="viewTime != null">view_time =#{viewTime},</if>
+            <if test="status != null">status =#{status},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteNotificationUserById">
+        delete
+        from notification_user
+        where id = #{notificationUserId}
+    </delete>
+
+    <delete id="deleteNotificationUserByIds">
+        delete from notification_user where id in
+        <foreach item="id" collection="notificationUserIds" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+
+    <select id="selectNotificationById" resultType="com.ruoyi.system.domain.Notification">
+        select n.content           as content,
+        n.notification_id   as notification_id,
+        n.notification_type as notification_type,
+        n.from_user_id      as from_user_id,
+        su1.nick_name       as from_user_name,
+        n.article_id        as article_id,
+        a.title        as article_title,
+        n.comment_id        as comment_id,
+        n.create_time       as create_time,
+        nu.to_user_id       as to_user_id,
+        su2.nick_name       as to_user_name,
+        nu.status           as status,
+        nu.id               as id,
+        cr.content          as comment_reply_content,
+        n.comment_reply_id  as comment_reply_id,
+        c.content           as comment_content,
+        a.title             as article_title,
+        nu.view_time        as view_time
+        FROM notification_user nu
+        LEFT JOIN notification n ON nu.notification_id = n.notification_id
+        LEFT JOIN articles a ON n.article_id = a.id
+        LEFT JOIN comment c ON n.comment_id = c.id
+        LEFT JOIN comment_reply cr ON n.comment_reply_id = cr.id
+        LEFT JOIN sys_user su1 ON n.from_user_id = su1.user_id
+        LEFT JOIN sys_user su2 ON nu.to_user_id = su2.user_id
+        <trim prefix="where" prefixOverrides="and">
+            <if test="notificationUserId != null and notificationUserId != ''">and nu.id = #{notificationUserId}</if>
+        </trim>
+    </select>
+
+
+
+
+</mapper>

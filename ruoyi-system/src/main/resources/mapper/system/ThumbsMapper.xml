@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ruoyi.system.mapper.ThumbsMapper">
+    <resultMap type="com.ruoyi.system.domain.Thumbs" id="ThumbsResult">
+        <result property="id" column="id"/>
+        <result property="quoteId" column="quote_id"/>
+        <result property="userId" column="user_id"/>
+        <result property="type" column="type"/>
+        <result property="createTime" column="create_time"/>
+    </resultMap>
+
+    <sql id="selectThumbsVo">
+        select id, quote_id, user_id, type, create_time
+        from thumbs
+    </sql>
+
+    <insert id="insertThumbs" parameterType="com.ruoyi.system.domain.Thumbs" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into thumbs
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="quoteId != null">quote_id,</if>
+            <if test="userId != null">user_id,</if>
+            <if test="type != null">type,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="quoteId != null">#{quoteId},</if>
+            <if test="userId != null">#{userId},</if>
+            <if test="type != null">#{type},</if>
+        </trim>
+    </insert>
+    <update id="updateThumbs">
+        update thumbs
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="quoteId != null">quote_id = #{quoteId},</if>
+            <if test="userId != null">user_id = #{userId},</if>
+            <if test="type != null">type = #{type},</if>
+        </trim>
+        where id = #{id}
+    </update>
+    <delete id="deleteThumbsByIds">
+        delete from thumbs where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <delete id="deleteThumbsById">
+        delete
+        from thumbs
+        where id = #{id}
+    </delete>
+
+
+    <select id="selectThumbsById" resultType="com.ruoyi.system.domain.Thumbs" resultMap="ThumbsResult">
+        <include refid="selectThumbsVo"></include>
+        where id = #{id}
+    </select>
+
+    <select id="selectThumbsByThumb" resultType="com.ruoyi.system.domain.Thumbs" resultMap="ThumbsResult">
+        <include refid="selectThumbsVo"></include>
+        where quote_id = #{quoteId} and user_id = #{userId}
+    </select>
+
+    <select id="selectThumbsList" resultType="com.ruoyi.system.domain.Thumbs" resultMap="ThumbsResult">
+        <include refid="selectThumbsVo"></include>
+        <where>
+            <if test="quoteId != null ">and quote_id = #{quoteId}</if>
+            <if test="userId != null ">and user_id = #{userId}</if>
+        </where>
+    </select>
+</mapper>
